@@ -13,6 +13,10 @@ public class UserRepository {
 
     @Autowired
     private UserCrudRepository userCrudRepository;
+    
+     public List<User> listAll() {
+        return userCrudRepository.findAll();
+    }
 
     public List<User> getAll() {
         return userCrudRepository.findAll();
@@ -47,5 +51,20 @@ public class UserRepository {
     public void delete(User user){
         userCrudRepository.delete(user);
     }
+     public boolean emailExist(String email) {
+        Optional<User> usuario = userCrudRepository.findByEmail(email);
 
+        return usuario.isPresent();
+    }
+
+    public Optional<User> autenticateUser(String email, String password) {
+        return userCrudRepository.findByEmailAndPassword(email, password);
+    }
+      public Optional<User> lastUserI(){
+        return userCrudRepository.findTopByOrderByIdDesc();
+    }
+     
+    public List<User> listBirthtDayMonth(String month){
+        return userCrudRepository.findByMonthBirthtDay(month);
+    }    
 }

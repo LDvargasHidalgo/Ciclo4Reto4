@@ -92,5 +92,10 @@ public class UserController {
     public boolean delete(@PathVariable("id") int id){
         return userService.delete(id);
     }
+    //Reto 5: Cumpleaños del mes
+    @GetMapping("/birthday/{month}")
+    public List<User> listBirthtDayMonth(@PathVariable("month") String month){
+        return userService.listBirthtDayMonth(month);
+    }
 
 }

@@ -105,13 +105,35 @@ public class UserService {
         }
     }
 
-    public boolean delete(int id){
-        Optional<User> userOptional = userRepository.getUser(id);
-        if(userOptional.isPresent()){
-            userRepository.delete(userOptional.get());
+public boolean delete(int userId) {
+        Boolean aBoolean = getUser(userId).map(user -> {
+            userRepository.delete(user);
             return true;
-        }
-        return false;
+        }).orElse(false);
+        return aBoolean;
+    }
+    
+    public List<User> listAll() {
+        return userRepository.listAll();
     }
 
+    public boolean emailExist(String email) {
+        return userRepository.emailExist(email);
+    }
+
+    public User autenticateUser(String email, String password) {
+        Optional<User> usuario = userRepository.autenticateUser(email, password);
+
+        if (!usuario.isPresent()) {
+            return new User();
+        } else {
+            return usuario.get();
+        }
+    }
+    
+    
+    public List<User> listBirthtDayMonth(String month){
+        return userRepository.listBirthtDayMonth(month);
+    }
+    
 }

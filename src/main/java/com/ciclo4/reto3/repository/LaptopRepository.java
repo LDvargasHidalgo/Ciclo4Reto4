@@ -37,5 +37,12 @@ public class LaptopRepository {
     public void delete(Laptop laptop){
         laptopCrudRepository.delete(laptop);
     }
-
+ //Reto 5
+    public List<Laptop> productsByPrice(double precio){
+        return laptopCrudRepository.findByPriceLessThanEqual(precio);
+    }
+    //Reto 5
+    public List<Laptop> findByDescriptionLike(String description){
+	return laptopCrudRepository.findByDescriptionLike(description);
+    }
 }

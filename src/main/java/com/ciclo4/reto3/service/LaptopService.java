@@ -116,5 +116,14 @@ public class LaptopService {
         }
         return false;
     }
+     //Reto 5
+    public List<Laptop> productsByPrice(double precio){
+        return laptopRepository.productsByPrice(precio);
+    }
+    
+    //Reto 5
+    public List<Laptop> findByDescriptionLike(String description) {
+	return laptopRepository.findByDescriptionLike(description);
+    }
 
 }
